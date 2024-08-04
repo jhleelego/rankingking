@@ -1,4 +1,12 @@
-const Sider = ({ onClose }: { onClose: () => void }) => {
+import Logo from './Logo'
+
+const Sider = ({
+  isSidebarOpen,
+  onClose,
+}: {
+  isSidebarOpen: boolean
+  onClose: () => void
+}) => {
   return (
     <div>
       <div className={`flex justify-end mb-4 md:hidden`}>
@@ -6,12 +14,12 @@ const Sider = ({ onClose }: { onClose: () => void }) => {
           ✕
         </button>
       </div>
-      <h2 className="text-xl font-bold">Sider</h2>
+      {isSidebarOpen ? <Logo /> : <></>}
       <nav>
         <ul>
-          <li>Item 1</li>
-          <li>Item 2</li>
-          <li>Item 3</li>
+          <li>준비중</li>
+          <li>준비중</li>
+          <li>준비중</li>
         </ul>
       </nav>
     </div>

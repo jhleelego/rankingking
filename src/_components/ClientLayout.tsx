@@ -72,11 +72,11 @@ const ClientLayout = ({ children }: { children: React.ReactNode }) => {
         onClick={toggleSidebar}
       ></div>
       <div
-        className={`fixed z-50 h-screen bg-gray-800 text-white p-4 transition-transform transform min-w-[240px] max-w-[240px] ${
+        className={`fixed z-50 h-screen bg-white border-r-1 border text-white p-4 transition-transform transform min-w-[240px] max-w-[240px] ${
           isSidebarOpen ? 'translate-x-0 ' : '-translate-x-full '
         } md:relative md:translate-x-0 md:w-1/4`}
       >
-        <Sider onClose={toggleSidebar} />
+        <Sider isSidebarOpen={isSidebarOpen} onClose={toggleSidebar} />
       </div>
 
       <div
@@ -84,7 +84,7 @@ const ClientLayout = ({ children }: { children: React.ReactNode }) => {
           isSidebarOpen ? 'md:ml-1/4' : 'md:ml-0'
         }`}
       >
-        <Header toggleSidebar={toggleSidebar} />
+        <Header isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
         {children}
       </div>
     </div>
