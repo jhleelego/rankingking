@@ -18,9 +18,7 @@ const Logo = () => {
           <span className="text-[22px] italic text-yellow-500">킹</span>
           <span className="text-[22px] italic text-blue-500">킹</span>
         </h1>
-      </Link>
-      <span className="text-black font-bold mb-1.5 text-blue-500">x</span>
-       */}
+      </Link> */}
     </>
   )
 }

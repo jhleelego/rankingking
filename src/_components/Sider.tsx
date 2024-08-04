@@ -1,23 +1,19 @@
 import Logo from './Logo'
 
-const Sider = ({
-  isSidebarOpen,
-  onClose,
-}: {
-  isSidebarOpen: boolean
-  onClose: () => void
-}) => {
+const Sider = ({ onClose }: { onClose: () => void }) => {
   return (
     <div>
-      <div className={`flex justify-end mb-4 md:hidden`}>
-        <button onClick={onClose} className="text-white">
+      <div className={`flex items-center justify-between px-2 h-[48px] `}>
+        <Logo />
+        <button onClick={onClose} className="text-gray-500">
           ✕
         </button>
       </div>
-      {isSidebarOpen ? <Logo /> : <></>}
-      <nav>
+      <nav className="p-4 text-black">
         <ul>
-          <li></li>
+          <li>A</li>
+          <li>B</li>
+          <li>C</li>
         </ul>
       </nav>
     </div>
