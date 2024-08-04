@@ -1,12 +1,7 @@
 'use client'
 
 const Item = () => {
-  return (
-    <div>
-      ITEM
-      <br />
-    </div>
-  )
+  return <div>ITEM</div>
 }
 
 export default Item
