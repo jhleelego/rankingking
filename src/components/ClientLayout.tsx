@@ -1,8 +1,15 @@
 'use client'
 
+import axios from 'axios'
+import { generateHmac } from '@/util/hmacGenerator'
 import { useState, useEffect } from 'react'
 import Sider from '@/components/Sider'
 import Header from '@/components/Header'
+
+const REQUEST_METHOD = 'POST'
+const URL = process.env.NEXT_PUBLIC_CP_URL || ''
+const SECRET_KEY = process.env.NEXT_PUBLIC_CP_SECRET_KEY || ''
+const ACCESS_KEY = process.env.NEXT_PUBLIC_CP_ACCESS_KEY || ''
 
 const ClientLayout = ({ children }: { children: React.ReactNode }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(
@@ -11,6 +18,13 @@ const ClientLayout = ({ children }: { children: React.ReactNode }) => {
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen)
+  }
+
+  const REQUEST = {
+    coupangUrls: [
+      'https://www.coupang.com/np/search?component=&q=1234&channel=user',
+      'https://www.coupang.com/np/coupangglobal',
+    ],
   }
 
   useEffect(() => {
@@ -28,6 +42,29 @@ const ClientLayout = ({ children }: { children: React.ReactNode }) => {
     return () => {
       window.removeEventListener('resize', handleResize)
     }
+  }, [])
+
+  useEffect(() => {
+    // const authorization = generateHmac(
+    //   REQUEST_METHOD,
+    //   URL,
+    //   SECRET_KEY,
+    //   ACCESS_KEY,
+    // )
+    // axios.defaults.baseURL = process.env.NEXT_PUBLIC_CP_DOMAIN
+    // axios
+    //   .request({
+    //     method: REQUEST_METHOD,
+    //     url: URL,
+    //     headers: { Authorization: authorization },
+    //     data: REQUEST,
+    //   })
+    //   .then((success) => {
+    //     console.log('success : ', success)
+    //   })
+    //   .catch((error) => {
+    //     console.error('error : ', error)
+    //   })
   }, [])
 
   return (
