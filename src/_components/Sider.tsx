@@ -17,9 +17,7 @@ const Sider = ({
       {isSidebarOpen ? <Logo /> : <></>}
       <nav>
         <ul>
-          <li>준비중</li>
-          <li>준비중</li>
-          <li>준비중</li>
+          <li></li>
         </ul>
       </nav>
     </div>
