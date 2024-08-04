@@ -1,9 +1,13 @@
-const isProd = process.env.NODE_ENV === 'production'
+const prefix =
+  process.env.NODE_ENV === 'production'
+    ? 'https://jhleelego.github.io/rankingking/'
+    : ''
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  assetPrefix: isProd ? 'https://jhleelego.github.io/rankingking/' : '',
   reactStrictMode: true,
+  output: 'export',
+  assetPrefix: prefix,
 }
 
 export default nextConfig
