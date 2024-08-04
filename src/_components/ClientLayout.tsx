@@ -1,10 +1,8 @@
 'use client'
 
-import axios from 'axios'
-import { generateHmac } from '@/util/hmacGenerator'
 import { useState, useEffect } from 'react'
-import Sider from '@/components/Sider'
-import Header from '@/components/Header'
+import Sider from '@/_components/Sider'
+import Header from '@/_components/Header'
 
 const REQUEST_METHOD = 'POST'
 const URL = process.env.NEXT_PUBLIC_CP_URL || ''
@@ -12,9 +10,7 @@ const SECRET_KEY = process.env.NEXT_PUBLIC_CP_SECRET_KEY || ''
 const ACCESS_KEY = process.env.NEXT_PUBLIC_CP_ACCESS_KEY || ''
 
 const ClientLayout = ({ children }: { children: React.ReactNode }) => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(
-    window.innerWidth < 1000 ? false : true,
-  )
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen)
@@ -75,7 +71,6 @@ const ClientLayout = ({ children }: { children: React.ReactNode }) => {
         } md:hidden`}
         onClick={toggleSidebar}
       ></div>
-
       <div
         className={`fixed z-50 h-screen bg-gray-800 text-white p-4 transition-transform transform min-w-[240px] max-w-[240px] ${
           isSidebarOpen ? 'translate-x-0 ' : '-translate-x-full '

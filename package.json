@@ -1,5 +1,5 @@
 {
-  "name": "at-rankingking",
+  "name": "rankingking",
   "version": "0.1.0",
   "private": true,
   "homepage": "https://jhleelego.github.io/rankingking/",
@@ -13,9 +13,10 @@
   "dependencies": {
     "@types/axios": "^0.14.0",
     "@types/moment": "^2.13.0",
-    "next": "14.2.5",
+    "next": "^14.2.5",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "tailwindcss": "^3.4.1"
   },
   "devDependencies": {
     "@types/node": "^20",

@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 const Header = ({ toggleSidebar }: { toggleSidebar: () => void }) => {
   return (
     <header className="h-12 text-white px-2 flex justify-between items-center bg-white gap-1.5">
@@ -24,13 +26,13 @@ const Header = ({ toggleSidebar }: { toggleSidebar: () => void }) => {
           referrerPolicy="unsafe-url"
         ></iframe>
       </div> */}
-      <a href="http://127.0.0.1:3000" className="mb-1">
+      <Link href={process.env.NEXT_PUBLIC_M_URL || ''} className="mb-1">
         <h1 className="font-bold text-black whitespace-nowrap">
           <span className="text-[22px] italic text-red-600">랭</span>
           <span className="text-[22px] italic text-yellow-500">킹</span>
           <span className="text-[22px] italic text-blue-500">킹</span>
         </h1>
-      </a>
+      </Link>
       <span className="text-black font-bold mb-1.5 text-blue-500">x</span>
       <div className="w-full">
         <iframe

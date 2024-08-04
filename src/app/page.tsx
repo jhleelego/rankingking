@@ -1,4 +1,4 @@
-import Item from '@/components/Item'
+import Item from '@/_components/Item'
 
 const Home = () => {
   return (
