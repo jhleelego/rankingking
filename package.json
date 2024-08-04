@@ -2,7 +2,6 @@
   "name": "rankingking",
   "version": "0.1.0",
   "private": true,
-  // "homepage": "https://jhleelego.github.io/rankingking/",
   "homepage": "https://rankingking.co.kr",
   "scripts": {
     "dev": "next dev",
