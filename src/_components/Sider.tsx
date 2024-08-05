@@ -12,7 +12,7 @@ const Sider = ({ onClose }: { onClose: () => void }) => {
     const imageSize = '512x512' // 이미지 사이즈 (옵션)
 
     // API 호출 URL 생성
-    const url = `https://api-gateway.coupang.com/v2/providers/affiliate_open_api/apis/openapi/products/bestcategories/${categoryId}?limit=${limit}&subId=${subId}&imageSize=${imageSize}`
+    const url = `https://api-gateway.coupang.com/v2/providers/affiliate_open_api/apis/openapi/v1//products/bestcategories/${categoryId}?limit=${limit}&subId=${subId}&imageSize=${imageSize}`
 
     // axios를 사용하여 API 호출
     axios
