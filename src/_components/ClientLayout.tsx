@@ -3,24 +3,26 @@
 import { useState, useEffect } from 'react'
 import Sider from '@/_components/Sider'
 import Header from '@/_components/Header'
+import axios from 'axios'
+import { generateHmac } from '@/util/hmacGenerator'
 
 const REQUEST_METHOD = 'POST'
-const URL = process.env.NEXT_PUBLIC_CP_URL || ''
+const URL = process.env.NEXT_PUBLIC_CP_URL_DEEPLINK || ''
 const SECRET_KEY = process.env.NEXT_PUBLIC_CP_SECRET_KEY || ''
 const ACCESS_KEY = process.env.NEXT_PUBLIC_CP_ACCESS_KEY || ''
+
+const REQUEST = {
+  coupangUrls: [
+    'https://www.coupang.com/np/search?component=&q=1234&channel=user',
+    'https://www.coupang.com/np/coupangglobal',
+  ],
+}
 
 const ClientLayout = ({ children }: { children: React.ReactNode }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen)
-  }
-
-  const REQUEST = {
-    coupangUrls: [
-      'https://www.coupang.com/np/search?component=&q=1234&channel=user',
-      'https://www.coupang.com/np/coupangglobal',
-    ],
   }
 
   useEffect(() => {
@@ -41,26 +43,30 @@ const ClientLayout = ({ children }: { children: React.ReactNode }) => {
   }, [])
 
   useEffect(() => {
-    // const authorization = generateHmac(
-    //   REQUEST_METHOD,
-    //   URL,
-    //   SECRET_KEY,
-    //   ACCESS_KEY,
-    // )
-    // axios.defaults.baseURL = process.env.NEXT_PUBLIC_CP_DOMAIN
-    // axios
-    //   .request({
-    //     method: REQUEST_METHOD,
-    //     url: URL,
-    //     headers: { Authorization: authorization },
-    //     data: REQUEST,
-    //   })
-    //   .then((success) => {
-    //     console.log('success : ', success)
-    //   })
-    //   .catch((error) => {
-    //     console.error('error : ', error)
-    //   })
+    const authorization = generateHmac(
+      REQUEST_METHOD,
+      URL,
+      SECRET_KEY,
+      ACCESS_KEY,
+    )
+    axios.defaults.baseURL = process.env.NEXT_PUBLIC_CP_DOMAIN
+    axios
+      .request({
+        method: REQUEST_METHOD,
+        url: URL,
+        headers: {
+          Authorization: authorization,
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        data: REQUEST,
+      })
+      .then((success) => {
+        console.log('success : ', success)
+      })
+      .catch((error) => {
+        console.error('error : ', error)
+      })
   }, [])
 
   return (

@@ -1,22 +1,41 @@
+'use client'
+
 import { useEffect } from 'react'
 import Logo from './Logo'
 import axios from 'axios'
+import { generateHmac } from '@/util/hmacGenerator'
+
+const REQUEST_METHOD = 'GET'
+const URL = process.env.NEXT_PUBLIC_CP_URL_BESTCATEGORIES || ''
+const SECRET_KEY = process.env.NEXT_PUBLIC_CP_SECRET_KEY || ''
+const ACCESS_KEY = process.env.NEXT_PUBLIC_CP_ACCESS_KEY || ''
+
+const REQUEST = {
+  limit: 50,
+  subId: 'rankingking',
+  imageSize: '512x512',
+}
 
 const Sider = ({ onClose }: { onClose: () => void }) => {
   useEffect(() => {
-    console.log('a')
-    // 카테고리 ID와 기타 파라미터 설정
-    const categoryId = 1001 // 예시로 여성패션 카테고리 ID 사용
-    const limit = 50
-    const subId = 'rankingking' // 채널 아이디 (옵션)
-    const imageSize = '512x512' // 이미지 사이즈 (옵션)
-
-    // API 호출 URL 생성
-    const url = `https://api-gateway.coupang.com/v2/providers/affiliate_open_api/apis/openapi/v1//products/bestcategories/${categoryId}?limit=${limit}&subId=${subId}&imageSize=${imageSize}`
-
+    const authorization = generateHmac(
+      REQUEST_METHOD,
+      URL,
+      SECRET_KEY,
+      ACCESS_KEY,
+    )
     // axios를 사용하여 API 호출
+    // axios.defaults.baseURL = process.env.NEXT_PUBLIC_CP_DOMAIN
     axios
-      .get(url)
+      .request({
+        method: REQUEST_METHOD,
+        url: `${URL}?limit=${REQUEST.limit}&subId=${REQUEST.subId}&imageSize=${REQUEST.imageSize}`,
+        headers: {
+          Authorization: authorization,
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+      })
       .then((response) => {
         // 응답 처리
         console.log('응답 데이터:', response.data)
