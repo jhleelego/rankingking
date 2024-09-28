@@ -24,8 +24,7 @@ const Sider = ({ onClose }: { onClose: () => void }) => {
       SECRET_KEY,
       ACCESS_KEY,
     )
-    // axios를 사용하여 API 호출
-    // axios.defaults.baseURL = process.env.NEXT_PUBLIC_CP_DOMAIN
+
     axios
       .request({
         method: REQUEST_METHOD,
