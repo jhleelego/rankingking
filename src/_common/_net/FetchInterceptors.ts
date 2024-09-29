@@ -59,7 +59,7 @@ export class FetchInterceptors {
       console.log(`@req : ${decodeURIComponent(targetUrl)}\n@config : `, finalConfig)
       response = await fetch(targetUrl, finalConfig)
       console.log('response.status : ', response.status)
-      alert(`'response : ${JSON.stringify(response)}`)
+      // alert(`'response : ${JSON.stringify(response)}`)
     } catch (error) {
       const errorResponse = { message: error } as ResErrorMessage
       await this.errorInterceptors.reduce(async (acc, errorInterceptor) => errorInterceptor(errorResponse), Promise.resolve(errorResponse))
