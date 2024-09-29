@@ -1,3 +1,3 @@
-export default interface ResMsg<T> {
+export default interface ResMsg {
   status: number
 }
