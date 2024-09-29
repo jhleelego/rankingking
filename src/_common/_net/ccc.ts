@@ -1,7 +1,6 @@
 import { Subject, Subscription } from 'rxjs'
 import ResSuccessMessage from '../_data/ResSuccessMessage'
 import ResErrorMessage from '../_data/ResErrorMessage'
-import { generateHmac } from '@/util/hmacGenerator'
 
 export class FetchInterceptors {
   public static count = 0
