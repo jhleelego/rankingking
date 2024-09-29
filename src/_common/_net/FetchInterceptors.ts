@@ -19,9 +19,6 @@ export class FetchInterceptors {
     ...this.defaultCredentials,
   }
 
-  private static SECRET_KEY = process.env.NEXT_PUBLIC_CP_SECRET_KEY || ''
-  private static ACCESS_KEY = process.env.NEXT_PUBLIC_CP_ACCESS_KEY || ''
-
   private static requestInterceptors: ((config: RequestInit) => Promise<RequestInit>)[] = []
   private static responseInterceptors: ((response: Response) => Promise<Response>)[] = []
   private static errorInterceptors: ((response: ResErrorMessage) => Promise<ResErrorMessage>)[] = []
@@ -58,9 +55,7 @@ export class FetchInterceptors {
     let response
     try {
       const targetUrl = `${this.defaultUrl}${url}`
-      const authorization = generateHmac(config?.method!, url, FetchInterceptors.SECRET_KEY, FetchInterceptors.ACCESS_KEY) as string
-      let mConfig: RequestInit | undefined = { ...config, headers: { ...config?.headers, Authorization: authorization } }
-      const finalConfig = await this.requestInterceptors.reduce(async (acc, reqInterceptor) => reqInterceptor(await acc), Promise.resolve(mConfig ?? {}))
+      const finalConfig = await this.requestInterceptors.reduce(async (acc, reqInterceptor) => reqInterceptor(await acc), Promise.resolve(config ?? {}))
       // console.log(`@req : ${decodeURIComponent(targetUrl)}\n@config : `, finalConfig)
       response = await fetch(targetUrl, finalConfig)
       // console.log('response.status : ', response.status)

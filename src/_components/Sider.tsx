@@ -19,11 +19,17 @@ const REQUEST = {
 }
 
 const Sider = ({ onClose }: { onClose: () => void }) => {
-  const { data: sampleData } = useSample(1000)
+  const { data: sampleData, error: sampelError } = useSample(1000)
 
   useEffect(() => {
     console.log('sampleData : ', sampleData)
   }, [sampleData])
+
+  useEffect(() => {
+    if (sampelError) {
+      console.log('sampelError : ', sampelError)
+    }
+  }, [sampelError])
 
   return (
     <div>
