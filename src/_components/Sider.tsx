@@ -4,6 +4,8 @@ import { useEffect } from 'react'
 import Logo from './Logo'
 import axios from 'axios'
 import { generateHmac } from '@/util/hmacGenerator'
+import { useQuery } from '@tanstack/react-query'
+import { useSample } from '@/_api/MbrApi'
 
 const REQUEST_METHOD = 'GET'
 const URL = process.env.NEXT_PUBLIC_CP_URL_BESTCATEGORIES || ''
@@ -17,33 +19,12 @@ const REQUEST = {
 }
 
 const Sider = ({ onClose }: { onClose: () => void }) => {
-  useEffect(() => {
-    const authorization = generateHmac(
-      REQUEST_METHOD,
-      URL,
-      SECRET_KEY,
-      ACCESS_KEY,
-    )
+  const { data: sampleData } = useSample(1000)
 
-    axios
-      .request({
-        method: REQUEST_METHOD,
-        url: `${URL}?limit=${REQUEST.limit}&subId=${REQUEST.subId}&imageSize=${REQUEST.imageSize}`,
-        headers: {
-          Authorization: authorization,
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-      })
-      .then((response) => {
-        // 응답 처리
-        console.log('응답 데이터:', response.data)
-      })
-      .catch((error) => {
-        // 에러 처리
-        console.error('API 호출 오류:', error)
-      })
-  }, [])
+  useEffect(() => {
+    console.log('sampleData : ', sampleData)
+  }, [sampleData])
+
   return (
     <div>
       <div className={`flex items-center justify-between px-4 h-[48px] `}>

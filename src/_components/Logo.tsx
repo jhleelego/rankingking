@@ -12,7 +12,7 @@ const Logo = () => {
           <span className=" text-blue-500">킹</span>
         </h1>
       </Link> */}
-      <Link href={process.env.NEXT_PUBLIC_M_URL || ''}>
+      <Link href="/">
         <h1 className="font-bold text-black whitespace-nowrap">
           <span className="text-[24px] italic text-red-600">랭</span>
           <span className="text-[24px] italic text-yellow-500">킹</span>
