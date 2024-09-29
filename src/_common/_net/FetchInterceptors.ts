@@ -50,7 +50,8 @@ export class FetchInterceptors {
     if (index != -1) this.errorInterceptors.splice(index, 1)
   }
 
-  public static async fetch<T>(url: string, config?: RequestInit): Promise<ResSuccessMessage<T> | Response> {
+  // public static async fetch<T>(url: string, config?: RequestInit): Promise<ResSuccessMessage<T> | Response> {
+  public static async fetch<T>(url: string, config?: RequestInit): Promise<any | Response> {
     let jsonResponse
     let response
     try {
@@ -59,7 +60,7 @@ export class FetchInterceptors {
       console.log(`@req : ${decodeURIComponent(targetUrl)}\n@config : `, finalConfig)
       response = await fetch(targetUrl, finalConfig)
       // console.log('response.status : ', response.status)
-      alert(`'response : ${JSON.stringify(response)}`)
+      // alert(`'response : ${JSON.stringify(response)}`)
     } catch (error) {
       const errorResponse = { message: error } as ResErrorMessage
       await this.errorInterceptors.reduce(async (acc, errorInterceptor) => errorInterceptor(errorResponse), Promise.resolve(errorResponse))
