@@ -6,11 +6,7 @@ import axios from 'axios'
 import { generateHmac } from '@/util/hmacGenerator'
 import { useQuery } from '@tanstack/react-query'
 import { useSample } from '@/_api/MbrApi'
-
-const REQUEST_METHOD = 'GET'
-const URL = process.env.NEXT_PUBLIC_CP_URL_BESTCATEGORIES || ''
-const SECRET_KEY = process.env.NEXT_PUBLIC_CP_SECRET_KEY || ''
-const ACCESS_KEY = process.env.NEXT_PUBLIC_CP_ACCESS_KEY || ''
+import ResErrorMessage from '@/_common/_data/ResErrorMessage'
 
 const REQUEST = {
   limit: 50,
@@ -27,7 +23,8 @@ const Sider = ({ onClose }: { onClose: () => void }) => {
 
   useEffect(() => {
     if (sampelError) {
-      console.log('sampelError : ', sampelError)
+      const error = sampelError as unknown as ResErrorMessage
+      console.log('sampelError : ', error)
     }
   }, [sampelError])
 

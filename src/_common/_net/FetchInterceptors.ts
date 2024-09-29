@@ -56,11 +56,11 @@ export class FetchInterceptors {
     try {
       const targetUrl = `${this.defaultUrl}${url}`
       const finalConfig = await this.requestInterceptors.reduce(async (acc, reqInterceptor) => reqInterceptor(await acc), Promise.resolve(config ?? {}))
-      // console.log(`@req : ${decodeURIComponent(targetUrl)}\n@config : `, finalConfig)
+      console.log(`@req : ${decodeURIComponent(targetUrl)}\n@config : `, finalConfig)
       response = await fetch(targetUrl, finalConfig)
       // console.log('response.status : ', response.status)
     } catch (error) {
-      const errorResponse = { rMessage: error } as ResErrorMessage
+      const errorResponse = { message: error } as ResErrorMessage
       await this.errorInterceptors.reduce(async (acc, errorInterceptor) => errorInterceptor(errorResponse), Promise.resolve(errorResponse))
       throw errorResponse
     }
