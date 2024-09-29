@@ -44,26 +44,26 @@ export async function postFetchData<T, V>(url: string, obj?: V): Promise<ResSucc
   })) as ResSuccessMessage<T>
 }
 
-export async function patchFetchData<T, V>(url: string, obj?: V): Promise<ResSuccessMessage<T>> {
-  return (await FetchInterceptors.fetch<T>(`${url}`, {
-    method: 'PATCH',
-    ...FetchInterceptors.defaultRequestInit,
-    body: JSON.stringify(obj ?? {}),
-  })) as ResSuccessMessage<T>
-}
+// export async function patchFetchData<T, V>(url: string, obj?: V): Promise<ResSuccessMessage<T>> {
+//   return (await FetchInterceptors.fetch<T>(`${url}`, {
+//     method: 'PATCH',
+//     ...FetchInterceptors.defaultRequestInit,
+//     body: JSON.stringify(obj ?? {}),
+//   })) as ResSuccessMessage<T>
+// }
 
-export async function putFetchData<T, V>(url: string, obj?: V): Promise<ResSuccessMessage<T>> {
-  return (await FetchInterceptors.fetch<T>(`${url}`, {
-    method: 'PUT',
-    ...FetchInterceptors.defaultRequestInit,
-    body: JSON.stringify(obj ?? {}),
-  })) as ResSuccessMessage<T>
-}
+// export async function putFetchData<T, V>(url: string, obj?: V): Promise<ResSuccessMessage<T>> {
+//   return (await FetchInterceptors.fetch<T>(`${url}`, {
+//     method: 'PUT',
+//     ...FetchInterceptors.defaultRequestInit,
+//     body: JSON.stringify(obj ?? {}),
+//   })) as ResSuccessMessage<T>
+// }
 
-export async function deleteFetchData<T, V>(url: string, obj?: V): Promise<ResSuccessMessage<T>> {
-  return (await FetchInterceptors.fetch<T>(`${url}`, {
-    method: 'DELETE',
-    ...FetchInterceptors.defaultRequestInit,
-    body: JSON.stringify(obj ?? {}),
-  })) as ResSuccessMessage<T>
-}
+// export async function deleteFetchData<T, V>(url: string, obj?: V): Promise<ResSuccessMessage<T>> {
+//   return (await FetchInterceptors.fetch<T>(`${url}`, {
+//     method: 'DELETE',
+//     ...FetchInterceptors.defaultRequestInit,
+//     body: JSON.stringify(obj ?? {}),
+//   })) as ResSuccessMessage<T>
+// }

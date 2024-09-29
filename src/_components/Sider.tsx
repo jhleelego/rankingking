@@ -4,32 +4,21 @@ import { useEffect } from 'react'
 import Logo from './Logo'
 import { useSample } from '@/_api/MbrApi'
 import ResErrorMessage from '@/_common/_data/ResErrorMessage'
-import { getFetchData } from '@/_common/_net/RestApi'
 
 const Sider = ({ onClose }: { onClose: () => void }) => {
-  // const { data: sampleData, error: sampelError } = useSample(1000)
+  const { data: sampleData, error: sampelError } = useSample(1000)
 
   useEffect(() => {
-    async function fetchData() {
-      // You can await here
-      const data = await getFetchData<any, {}>(`products/bestcategories/1000`)
-      console.log(`data : ${JSON.stringify(data)}`)
-      // ...
+    console.log('sampleData : ', sampleData)
+  }, [sampleData])
+
+  useEffect(() => {
+    if (sampelError) {
+      console.log('sampelError : ', sampelError)
+      const error = sampelError as unknown as ResErrorMessage
+      console.log('sampelError : ', error)
     }
-    fetchData()
-  }, [])
-
-  // useEffect(() => {
-  //   console.log('sampleData : ', sampleData)
-  // }, [sampleData])
-
-  // useEffect(() => {
-  //   if (sampelError) {
-  //     console.log('sampelError : ', sampelError)
-  //     const error = sampelError as unknown as ResErrorMessage
-  //     console.log('sampelError : ', error)
-  //   }
-  // }, [sampelError])
+  }, [sampelError])
 
   return (
     <div>

@@ -1,6 +1,11 @@
+import { Subject, Subscription } from 'rxjs'
+import ResSuccessMessage from '../_data/ResSuccessMessage'
 import ResErrorMessage from '../_data/ResErrorMessage'
+import { generateHmac } from '@/util/hmacGenerator'
 
 export class FetchInterceptors {
+  public static count = 0
+  private static observers = new Subject<number>()
   private static defaultUrl = process.env.NEXT_PUBLIC_CP_BASE_URL
   public static defaultCredentials: RequestInit = {
     credentials: 'include',
@@ -45,49 +50,66 @@ export class FetchInterceptors {
     if (index != -1) this.errorInterceptors.splice(index, 1)
   }
 
-  // public static async fetch<T>(url: string, config?: RequestInit): Promise<ResSuccessMessage<T> | Response> {
-  public static async fetch<T>(url: string, config?: RequestInit): Promise<any | Response> {
+  public static async fetch<T>(url: string, config?: RequestInit): Promise<ResSuccessMessage<T> | Response> {
     let jsonResponse
     let response
     try {
       const targetUrl = `${this.defaultUrl}${url}`
-      // const finalConfig = await this.requestInterceptors.reduce(async (acc, reqInterceptor) => reqInterceptor(await acc), Promise.resolve(config ?? {}))
-      // console.log(`@req : ${decodeURIComponent(targetUrl)}\n@config : `, finalConfig)
-      response = await fetch(targetUrl, config)
+      const finalConfig = await this.requestInterceptors.reduce(async (acc, reqInterceptor) => reqInterceptor(await acc), Promise.resolve(config ?? {}))
+      console.log(`@req : ${decodeURIComponent(targetUrl)}\n@config : `, finalConfig)
+      response = await fetch(targetUrl, finalConfig)
       // console.log('response.status : ', response.status)
       // alert(`'response : ${JSON.stringify(response)}`)
     } catch (error) {
-      // const errorResponse = { message: error } as ResErrorMessage
-      // await this.errorInterceptors.reduce(async (acc, errorInterceptor) => errorInterceptor(errorResponse), Promise.resolve(errorResponse))
-      throw error
+      const errorResponse = { message: error } as ResErrorMessage
+      await this.errorInterceptors.reduce(async (acc, errorInterceptor) => errorInterceptor(errorResponse), Promise.resolve(errorResponse))
+      throw errorResponse
     }
 
     if (response.ok && response.status >= 200 && response.status <= 300) {
       try {
-        // jsonResponse = await response.json()
-        // jsonResponse.status = response.status
-        // return await this.responseInterceptors.reduce(async (acc_1, resInterceptor) => resInterceptor(await acc_1), Promise.resolve(jsonResponse))
-        return response
+        jsonResponse = await response.json()
+        jsonResponse.status = response.status
+        return await this.responseInterceptors.reduce(async (acc_1, resInterceptor) => resInterceptor(await acc_1), Promise.resolve(jsonResponse))
       } catch (error) {
-        // return await this.responseInterceptors.reduce(async (acc_1, resInterceptor) => resInterceptor(await acc_1), Promise.resolve(response))
-        return response
+        return await this.responseInterceptors.reduce(async (acc_1, resInterceptor) => resInterceptor(await acc_1), Promise.resolve(response))
       }
     } else {
-      // jsonResponse = await response.json()
-      // jsonResponse.status = response.status
-      // const errorResponse = { status: response.status, ...jsonResponse } as ResErrorMessage
-      // await this.errorInterceptors.reduce(async (acc, errorInterceptor) => errorInterceptor(errorResponse), Promise.resolve(errorResponse))
-      throw response
+      jsonResponse = await response.json()
+      jsonResponse.status = response.status
+      const errorResponse = { status: response.status, ...jsonResponse } as ResErrorMessage
+      await this.errorInterceptors.reduce(async (acc, errorInterceptor) => errorInterceptor(errorResponse), Promise.resolve(errorResponse))
+      throw errorResponse
     }
+  }
+
+  public static subscribe(observer: (count: number) => void): Subscription {
+    const subscription = this.observers.subscribe(observer)
+    return subscription
+  }
+
+  static reqInterceptor = (config: any) => {
+    this.observers.next(++this.count)
+    return config
+  }
+
+  static resInterceptor = (response: any) => {
+    this.observers.next(--this.count)
+    return response
+  }
+
+  static resErrorInterceptor = (error: ResErrorMessage) => {
+    this.observers.next(--this.count)
+    return Promise.resolve(error)
   }
 }
 
-// FetchInterceptors.addRequestInterceptor(async (config) => {
-//   // Modify request config (e.g., add headers)
-//   return config
-// })
+FetchInterceptors.addRequestInterceptor(async (config) => {
+  // Modify request config (e.g., add headers)
+  return config
+})
 
-// FetchInterceptors.addResponseInterceptor(async (response) => {
-//   // Modify response (e.g., handle errors)
-//   return response
-// })
+FetchInterceptors.addResponseInterceptor(async (response) => {
+  // Modify response (e.g., handle errors)
+  return response
+})
