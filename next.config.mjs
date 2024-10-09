@@ -4,6 +4,7 @@ const prefix = process.env.NODE_ENV === 'production' ? 'https://rankingking.co.k
 const nextConfig = {
   reactStrictMode: true,
   assetPrefix: prefix,
+  output: 'export',
 }
 
 export default nextConfig
