@@ -20,17 +20,15 @@ jobs:
           node-version: "v18.14.0"
           cache: "yarn"
 
-      - name: ENV Setting
-        run: echo "ENV_A=ENV_A" >> .env.local
-
       - name: Build
         run: |
-          echo "NEXT_PUBLIC_CP_BASE_URL=${{ secrets.NEXT_PUBLIC_CP_BASE_URL }}" >> .env.local
-          echo "NEXT_PUBLIC_CP_SECRET_KEY=${{ secrets.NEXT_PUBLIC_CP_SECRET_KEY }}" >> .env.local
-          echo "NEXT_PUBLIC_CP_ACCESS_KEY=${{ secrets.NEXT_PUBLIC_CP_ACCESS_KEY }}" >> .env.local
           yarn
           yarn build
           yarn export
+        env:
+          NEXT_PUBLIC_CP_BASE_URL: ${{ secrets.NEXT_PUBLIC_CP_BASE_URL }}
+          NEXT_PUBLIC_CP_SECRET_KEY: ${{ secrets.NEXT_PUBLIC_CP_SECRET_KEY }}
+          NEXT_PUBLIC_CP_ACCESS_KEY: ${{ secrets.NEXT_PUBLIC_CP_ACCESS_KEY }}
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
