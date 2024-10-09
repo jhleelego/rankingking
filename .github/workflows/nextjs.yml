@@ -109,3 +109,6 @@ jobs:
           NEXT_PUBLIC_CP_ACCESS_KEY: ${{ secrets.NEXT_PUBLIC_CP_ACCESS_KEY }}
         id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          deploy_key: ${{ secrets.DEPLOY_KEY }}
+          publish_dir: ./out
