@@ -1,6 +1,6 @@
 2:I[6513,[],"ClientPageRoot"]
 3:I[7084,["218","static/chunks/aaea2bcf-331040db6205e5fa.js","990","static/chunks/13b76428-7f9834f11c793e4f.js","336","static/chunks/336-53be0b53e947bd01.js","96","static/chunks/96-44003cade1edc8b9.js","931","static/chunks/app/page-48edaf16056b24de.js"],"default"]
-0:["FHftIniUfdT7kp9aO-JTt",[[["",{"children":["__PAGE__",{}]},"$undefined","$undefined",true],["",{"children":["__PAGE__",{},[["$L1",["$","$L2",null,{"props":{"params":{},"searchParams":{}},"Component":"$3"}]],null],null]},["$L4",null],null],[[["$","link","0",{"rel":"stylesheet","href":"https://rankingking.co.kr/_next/static/css/db4b7d982d6dc685.css","precedence":"next","crossOrigin":"$undefined"}]],[null,"$L5"]]]]]
+0:["dn2gVo9_Aw_RMpFxUTjTm",[[["",{"children":["__PAGE__",{}]},"$undefined","$undefined",true],["",{"children":["__PAGE__",{},[["$L1",["$","$L2",null,{"props":{"params":{},"searchParams":{}},"Component":"$3"}]],null],null]},["$L4",null],null],[[["$","link","0",{"rel":"stylesheet","href":"https://rankingking.co.kr/_next/static/css/db4b7d982d6dc685.css","precedence":"next","crossOrigin":"$undefined"}]],[null,"$L5"]]]]]
 6:I[396,["336","static/chunks/336-53be0b53e947bd01.js","185","static/chunks/app/layout-43cda4c3ecfcc0ea.js"],"QueryProviders"]
 7:I[9275,[],""]
 8:I[1343,[],""]
