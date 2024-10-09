@@ -81,10 +81,15 @@ jobs:
 
       - name: Build with Next.js
         run: |
-          echo "NEXT_PUBLIC_CP_BASE_URL: ${{ secrets.NEXT_PUBLIC_CP_BASE_URL }}" >> .env
-          echo "NEXT_PUBLIC_CP_SECRET_KEY: ${{ secrets.NEXT_PUBLIC_CP_SECRET_KEY }}" >> .env
-          echo "NEXT_PUBLIC_CP_ACCESS_KEY: ${{ secrets.NEXT_PUBLIC_CP_ACCESS_KEY }}" >> .env
+          echo "NEXT_PUBLIC_CP_BASE_URL: $NEXT_PUBLIC_CP_BASE_URL" >> .env
+          echo "NEXT_PUBLIC_CP_SECRET_KEY: $NEXT_PUBLIC_CP_SECRET_KEY" >> .env
+          echo "NEXT_PUBLIC_CP_ACCESS_KEY: $NEXT_PUBLIC_CP_ACCESS_KEY" >> .env
           ${{ steps.detect-package-manager.outputs.runner }} next build
+        env:
+          PUBLIC_CP_BASE_URL: ASDF
+          NEXT_PUBLIC_CP_BASE_URL: ${{ secrets.NEXT_PUBLIC_CP_BASE_URL }}
+          NEXT_PUBLIC_CP_SECRET_KEY: ${{ secrets.NEXT_PUBLIC_CP_SECRET_KEY }}
+          NEXT_PUBLIC_CP_ACCESS_KEY: ${{ secrets.NEXT_PUBLIC_CP_ACCESS_KEY }}
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
