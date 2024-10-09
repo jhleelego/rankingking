@@ -102,5 +102,10 @@ jobs:
     needs: build
     steps:
       - name: Deploy to GitHub Pages
+        env:
+          PUBLIC_CP_BASE_URL: ASDF
+          NEXT_PUBLIC_CP_BASE_URL: ${{ secrets.NEXT_PUBLIC_CP_BASE_URL }}
+          NEXT_PUBLIC_CP_SECRET_KEY: ${{ secrets.NEXT_PUBLIC_CP_SECRET_KEY }}
+          NEXT_PUBLIC_CP_ACCESS_KEY: ${{ secrets.NEXT_PUBLIC_CP_ACCESS_KEY }}
         id: deployment
         uses: actions/deploy-pages@v4
