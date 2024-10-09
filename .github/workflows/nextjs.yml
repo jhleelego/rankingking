@@ -81,9 +81,10 @@ jobs:
 
       - name: Build with Next.js
         run: |
-          echo "NEXT_PUBLIC_CP_BASE_URL: $NEXT_PUBLIC_CP_BASE_URL" >> .env
-          echo "NEXT_PUBLIC_CP_SECRET_KEY: $NEXT_PUBLIC_CP_SECRET_KEY" >> .env
-          echo "NEXT_PUBLIC_CP_ACCESS_KEY: $NEXT_PUBLIC_CP_ACCESS_KEY" >> .env
+          echo "PUBLIC_CP_BASE_URL=$PUBLIC_CP_BASE_URL" >> .env
+          echo "NEXT_PUBLIC_CP_BASE_URL=$NEXT_PUBLIC_CP_BASE_URL" >> .env
+          echo "NEXT_PUBLIC_CP_SECRET_KEY=$NEXT_PUBLIC_CP_SECRET_KEY" >> .env
+          echo "NEXT_PUBLIC_CP_ACCESS_KEY=$NEXT_PUBLIC_CP_ACCESS_KEY" >> .env
           ${{ steps.detect-package-manager.outputs.runner }} next build
         env:
           PUBLIC_CP_BASE_URL: ASDF
@@ -107,6 +108,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-        with:
-          deploy_key: ${{ secrets.DEPLOY_KEY }}
-          publish_dir: ./out
