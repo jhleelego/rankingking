@@ -31,8 +31,7 @@ jobs:
       - name: Build
         run: |
           yarn
-          yarn build
-          yarn export
+          yarn deploy
         env:
           NEXT_PUBLIC_CP_BASE_URL: ${{ secrets.NEXT_PUBLIC_CP_BASE_URL }}
           NEXT_PUBLIC_CP_SECRET_KEY: ${{ secrets.NEXT_PUBLIC_CP_SECRET_KEY }}
