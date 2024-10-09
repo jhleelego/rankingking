@@ -81,6 +81,12 @@ jobs:
 
       - name: Build with Next.js
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
+        with:
+          PUBLIC_CP_BASE_URL: ASDF
+          NEXT_PUBLIC_CP_BASE_URL: ${{ secrets.NEXT_PUBLIC_CP_BASE_URL }}
+          NEXT_PUBLIC_CP_SECRET_KEY: ${{ secrets.NEXT_PUBLIC_CP_SECRET_KEY }}
+          NEXT_PUBLIC_CP_ACCESS_KEY: ${{ secrets.NEXT_PUBLIC_CP_ACCESS_KEY }}
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
@@ -93,11 +99,6 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     needs: build
-    env:
-      PUBLIC_CP_BASE_URL: ASDF
-      NEXT_PUBLIC_CP_BASE_URL: ${{ secrets.NEXT_PUBLIC_CP_BASE_URL }}
-      NEXT_PUBLIC_CP_SECRET_KEY: ${{ secrets.NEXT_PUBLIC_CP_SECRET_KEY }}
-      NEXT_PUBLIC_CP_ACCESS_KEY: ${{ secrets.NEXT_PUBLIC_CP_ACCESS_KEY }}
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
