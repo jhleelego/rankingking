@@ -16,7 +16,7 @@ const Sider = ({ onClose }: { onClose: () => void }) => {
 
   useEffect(() => {
     if (sampelError) {
-      console.log('sampelError : ', sampelError)
+      console.log('sampelErrosr : ', sampelError)
       const error = sampelError as unknown as ResErrorMessage
       console.log('sampelError : ', error)
     }
