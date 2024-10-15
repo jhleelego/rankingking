@@ -53,6 +53,15 @@ jobs:
         with:
           node-version: '20'
           cache: ${{ steps.detect-package-manager.outputs.manager }}
+      - name: Generate Environment Variables File for Production
+        run: |
+          echo "NEXT_PUBLIC_CP_BASE_URL=$NEXT_PUBLIC_CP_BASE_URL" >> .env.production
+          echo "NEXT_PUBLIC_CP_SECRET_KEY=$NEXT_PUBLIC_CP_SECRET_KEY" >> .env.production
+          echo "NEXT_PUBLIC_CP_ACCESS_KEY=$NEXT_PUBLIC_CP_ACCESS_KEY" >> .env.production
+        env:
+          NEXT_PUBLIC_CP_BASE_URL: ${{ secrets.NEXT_PUBLIC_CP_BASE_URL }}
+          NEXT_PUBLIC_CP_SECRET_KEY: ${{ secrets.NEXT_PUBLIC_CP_SECRET_KEY }}
+          NEXT_PUBLIC_CP_ACCESS_KEY: ${{ secrets.NEXT_PUBLIC_CP_ACCESS_KEY }}
       - name: Setup Pages
         uses: actions/configure-pages@v5
         with:
@@ -65,9 +74,6 @@ jobs:
         uses: actions/cache@v4
         with:
           path: |
-            echo "NEXT_PUBLIC_CP_BASE_URL=${{ secrets.NEXT_PUBLIC_CP_BASE_URL }}" >> .env
-            echo "NEXT_PUBLIC_CP_SECRET_KEY=${{ secrets.NEXT_PUBLIC_CP_SECRET_KEY }}" >> .env
-            echo "NEXT_PUBLIC_CP_ACCESS_KEY=${{ secrets.NEXT_PUBLIC_CP_ACCESS_KEY }}" >> .env
             .next/cache
           # Generate a new cache whenever packages or source files change.
           key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
