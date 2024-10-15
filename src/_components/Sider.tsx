@@ -14,41 +14,40 @@ const REQ_INFO = {
 }
 
 const Sider = ({ onClose }: { onClose: () => void }) => {
-  // const REQUEST_METHOD = 'POST'
+  const REQUEST_METHOD = 'POST'
 
-  // // Replace with your own ACCESS_KEY and SECRET_KEY
+  // Replace with your own ACCESS_KEY and SECRET_KEY
 
-  // // eslint-disable-next-line react-hooks/exhaustive-deps
-  // const REQUEST = { coupangUrls: ['https://www.coupang.com/np/search?component=&q=good&channel=user', 'https://www.coupang.com/np/coupangglobal'] }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const REQUEST = { coupangUrls: ['https://www.coupang.com/np/search?component=&q=good&channel=user', 'https://www.coupang.com/np/coupangglobal'] }
 
-  // useEffect(() => {
-  //   console.log('REQUEST_METHOD : ', REQUEST_METHOD)
-  //   console.log('REQ_INFO.URL : ', REQ_INFO.URL)
-  //   console.log('REQ_INFO.SECRET_KEY : ', REQ_INFO.SECRET_KEY)
-  //   console.log('REQ_INFO.ACCESS_KEY : ', REQ_INFO.ACCESS_KEY)
-  //   console.log('REQ_INFO.DOMAIN : ', REQ_INFO.DOMAIN)
-  //   ;(async () => {
-  //     const authorization = generateHmac(REQUEST_METHOD, REQ_INFO.URL, REQ_INFO.SECRET_KEY, REQ_INFO.ACCESS_KEY)
-  //     console.log('authorization : ', authorization)
-  //     axios.defaults.baseURL = REQ_INFO.DOMAIN
+  useEffect(() => {
+    console.log('REQUEST_METHOD : ', REQUEST_METHOD)
+    console.log('REQ_INFO.URL : ', REQ_INFO.URL)
+    console.log('REQ_INFO.SECRET_KEY : ', REQ_INFO.SECRET_KEY)
+    console.log('REQ_INFO.ACCESS_KEY : ', REQ_INFO.ACCESS_KEY)
+    console.log('REQ_INFO.DOMAIN : ', REQ_INFO.DOMAIN)
+    ;(async () => {
+      const authorization = generateHmac(REQUEST_METHOD, REQ_INFO.URL, REQ_INFO.SECRET_KEY, REQ_INFO.ACCESS_KEY)
+      console.log('authorization : ', authorization)
+      axios.defaults.baseURL = REQ_INFO.DOMAIN
 
-  //     try {
-  //       const response = await axios.request({
-  //         method: REQUEST_METHOD,
-  //         url: REQ_INFO.URL,
-  //         headers: { Authorization: authorization },
-  //         data: REQUEST,
-  //       })
-  //       console.log(response.data)
-  //     } catch (err) {
-  //       console.error(err)
-  //     }
-  //   })()
-  // }, [REQUEST])
+      try {
+        const response = await axios.request({
+          method: REQUEST_METHOD,
+          url: REQ_INFO.URL,
+          headers: { Authorization: authorization },
+          data: REQUEST,
+        })
+        console.log(response.data)
+      } catch (err) {
+        console.error(err)
+      }
+    })()
+  }, [REQUEST])
 
   return (
     <div>
-      <ClientLayout>a</ClientLayout>
       <div className={`flex items-center justify-between px-4 h-[48px] `}>
         <Logo />
         <button onClick={onClose} className="text-gray-500">

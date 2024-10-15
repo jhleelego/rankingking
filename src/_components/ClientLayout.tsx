@@ -7,7 +7,7 @@ import axios from 'axios'
 import { generateHmac } from '@/util/hmacGenerator'
 
 const REQUEST_METHOD = 'POST'
-const URL = process.env.NEXT_PUBLIC_CP_URL_DEEPLINK || ''
+const URL = '/v2/providers/affiliate_open_api/apis/openapi/v1/deeplink'
 const SECRET_KEY = process.env.NEXT_PUBLIC_CP_SECRET_KEY || ''
 const ACCESS_KEY = process.env.NEXT_PUBLIC_CP_ACCESS_KEY || ''
 
@@ -65,13 +65,13 @@ const ClientLayout = ({ children }: { children: React.ReactNode }) => {
     <div className="min-h-screen flex">
       <div className={`fixed z-40 inset-0 bg-black opacity-50 ${isSidebarOpen ? 'block' : 'hidden'} md:hidden`} onClick={toggleSidebar}></div>
 
-      {isSidebarOpen ? (
+      {/* {isSidebarOpen ? (
         <div className={`fixed z-50 h-screen bg-white border-r-1 border text-white transition-transform transform min-w-[240px] max-w-[240px] md:relative `}>
           <Sider onClose={toggleSidebar} />
         </div>
       ) : (
         <></>
-      )}
+      )} */}
 
       <div className={`flex-1 flex flex-col transition-margin duration-300  `}>
         <Header isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
