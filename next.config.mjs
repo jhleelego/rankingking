@@ -2,8 +2,16 @@ const prefix = process.env.NODE_ENV === 'production' ? 'https://rankingking.co.k
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: false,
+  reactStrictMode: true,
   assetPrefix: prefix,
+  async rewrites() {
+    return [
+      {
+        source: '/:path*',
+        destination: `${process.env.NEXT_PUBLIC_CP_DOMAIN}/:path*`,
+      },
+    ]
+  },
 }
 
 export default nextConfig

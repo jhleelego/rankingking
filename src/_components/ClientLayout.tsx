@@ -13,7 +13,10 @@ const REQ_INFO = {
   SECRET_KEY: process.env.NEXT_PUBLIC_CP_SECRET_KEY!,
 }
 
-const REQUEST = { coupangUrls: ['https://www.coupang.com/np/search?component=&q=good&channel=user', 'https://www.coupang.com/np/coupangglobal'] }
+const REQUEST = {
+  coupangUrls: ['https://www.coupang.com/np/search?component=&q=good&channel=user', 'https://www.coupang.com/np/coupangglobal'],
+  subId: 'rankingking',
+}
 
 const ClientLayout = ({ children }: { children: React.ReactNode }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
