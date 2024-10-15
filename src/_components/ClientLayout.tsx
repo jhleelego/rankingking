@@ -6,14 +6,14 @@ import Header from '@/_components/Header'
 import axios from 'axios'
 import { generateHmac } from '@/util/hmacGenerator'
 
-const REQUEST_METHOD = 'POST'
-const URL = '/v2/providers/affiliate_open_api/apis/openapi/v1/deeplink'
-const SECRET_KEY = process.env.NEXT_PUBLIC_CP_SECRET_KEY || ''
-const ACCESS_KEY = process.env.NEXT_PUBLIC_CP_ACCESS_KEY || ''
-
-const REQUEST = {
-  coupangUrls: ['https://www.coupang.com/np/search?component=&q=1234&channel=user', 'https://www.coupang.com/np/coupangglobal'],
+const REQ_INFO = {
+  DOMAIN: process.env.NEXT_PUBLIC_CP_DOMAIN,
+  URL: '/v2/providers/affiliate_open_api/apis/openapi/v1/deeplink',
+  ACCESS_KEY: process.env.NEXT_PUBLIC_CP_ACCESS_KEY!,
+  SECRET_KEY: process.env.NEXT_PUBLIC_CP_SECRET_KEY!,
 }
+
+const REQUEST = { coupangUrls: ['https://www.coupang.com/np/search?component=&q=good&channel=user', 'https://www.coupang.com/np/coupangglobal'] }
 
 const ClientLayout = ({ children }: { children: React.ReactNode }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
@@ -39,13 +39,21 @@ const ClientLayout = ({ children }: { children: React.ReactNode }) => {
     }
   }, [])
 
+  const REQUEST_METHOD = 'POST'
+
   useEffect(() => {
-    const authorization = generateHmac(REQUEST_METHOD, URL, SECRET_KEY, ACCESS_KEY)
+    console.log('REQUEST_METHOD : ', REQUEST_METHOD)
+    console.log('REQ_INFO.URL : ', REQ_INFO.URL)
+    console.log('REQ_INFO.SECRET_KEY : ', REQ_INFO.SECRET_KEY)
+    console.log('REQ_INFO.ACCESS_KEY : ', REQ_INFO.ACCESS_KEY)
+    console.log('REQ_INFO.DOMAIN : ', REQ_INFO.DOMAIN)
+    const authorization = generateHmac(REQUEST_METHOD, REQ_INFO.URL, REQ_INFO.SECRET_KEY, REQ_INFO.ACCESS_KEY)
+    console.log('authorization.DOMAIN : ', authorization)
     axios.defaults.baseURL = process.env.NEXT_PUBLIC_CP_DOMAIN
     axios
       .request({
         method: REQUEST_METHOD,
-        url: URL,
+        url: REQ_INFO.URL,
         headers: {
           Authorization: authorization,
           Accept: 'application/json',

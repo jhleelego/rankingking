@@ -4,7 +4,6 @@ import axios from 'axios'
 import Logo from './Logo'
 import { generateHmac } from '@/util/hmacGenerator'
 import { useEffect } from 'react'
-import ClientLayout from './ClientLayout'
 
 const REQ_INFO = {
   DOMAIN: process.env.NEXT_PUBLIC_CP_DOMAIN,
@@ -12,14 +11,10 @@ const REQ_INFO = {
   ACCESS_KEY: process.env.NEXT_PUBLIC_CP_ACCESS_KEY!,
   SECRET_KEY: process.env.NEXT_PUBLIC_CP_SECRET_KEY!,
 }
+const REQUEST = { coupangUrls: ['https://www.coupang.com/np/search?component=&q=good&channel=user', 'https://www.coupang.com/np/coupangglobal'] }
 
 const Sider = ({ onClose }: { onClose: () => void }) => {
   const REQUEST_METHOD = 'POST'
-
-  // Replace with your own ACCESS_KEY and SECRET_KEY
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const REQUEST = { coupangUrls: ['https://www.coupang.com/np/search?component=&q=good&channel=user', 'https://www.coupang.com/np/coupangglobal'] }
 
   useEffect(() => {
     console.log('REQUEST_METHOD : ', REQUEST_METHOD)
@@ -44,7 +39,7 @@ const Sider = ({ onClose }: { onClose: () => void }) => {
         console.error(err)
       }
     })()
-  }, [REQUEST])
+  }, [])
 
   return (
     <div>

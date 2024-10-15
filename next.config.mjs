@@ -2,16 +2,8 @@ const prefix = process.env.NODE_ENV === 'production' ? 'https://rankingking.co.k
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
+  reactStrictMode: false,
   assetPrefix: prefix,
-  async rewrites() {
-    return [
-      {
-        source: '/:path*',
-        destination: '/:path*',
-      },
-    ]
-  },
 }
 
 export default nextConfig
