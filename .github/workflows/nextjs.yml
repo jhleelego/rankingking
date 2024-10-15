@@ -17,8 +17,8 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: "v18.14.0"
-          cache: "yarn"
+          node-version: 'v18.14.0'
+          cache: 'yarn'
 
       - name: Build
         run: |
@@ -29,7 +29,5 @@ jobs:
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
-          // Secrets and variables에서 작성한 PRIVATE KEY이름
-          deploy_key: ${{ secrets.DEPLOY_KEY }} 
-          // next export 실행 후 생성되는 폴더 경로
-          publish_dir: ./out 
+          deploy_key: ${{ secrets.DEPLOY_KEY }}
+          publish_dir: ./out
