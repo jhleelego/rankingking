@@ -21,8 +21,14 @@ const Sider = ({ onClose }: { onClose: () => void }) => {
   const REQUEST = { coupangUrls: ['https://www.coupang.com/np/search?component=&q=good&channel=user', 'https://www.coupang.com/np/coupangglobal'] }
 
   useEffect(() => {
+    console.log('REQUEST_METHOD : ', REQUEST_METHOD)
+    console.log('REQ_INFO.URL : ', REQ_INFO.URL)
+    console.log('REQ_INFO.SECRET_KEY : ', REQ_INFO.SECRET_KEY)
+    console.log('REQ_INFO.ACCESS_KEY : ', REQ_INFO.ACCESS_KEY)
+    console.log('REQ_INFO.DOMAIN : ', REQ_INFO.DOMAIN)
     ;(async () => {
       const authorization = generateHmac(REQUEST_METHOD, REQ_INFO.URL, REQ_INFO.SECRET_KEY, REQ_INFO.ACCESS_KEY)
+      console.log('authorization : ', authorization)
       axios.defaults.baseURL = REQ_INFO.DOMAIN
 
       try {
