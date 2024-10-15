@@ -65,6 +65,9 @@ jobs:
         uses: actions/cache@v4
         with:
           path: |
+            echo "NEXT_PUBLIC_CP_BASE_URL=${{ secrets.NEXT_PUBLIC_CP_BASE_URL }}" >> .env
+            echo "NEXT_PUBLIC_CP_SECRET_KEY=${{ secrets.NEXT_PUBLIC_CP_SECRET_KEY }}" >> .env
+            echo "NEXT_PUBLIC_CP_ACCESS_KEY=${{ secrets.NEXT_PUBLIC_CP_ACCESS_KEY }}" >> .env
             .next/cache
           # Generate a new cache whenever packages or source files change.
           key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
@@ -75,11 +78,6 @@ jobs:
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
       - name: Build with Next.js
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
-        env:
-          PUBLIC_CP_BASE_URL: ASDF
-          NEXT_PUBLIC_CP_BASE_URL: ${{ secrets.NEXT_PUBLIC_CP_BASE_URL }}
-          NEXT_PUBLIC_CP_SECRET_KEY: ${{ secrets.NEXT_PUBLIC_CP_SECRET_KEY }}
-          NEXT_PUBLIC_CP_ACCESS_KEY: ${{ secrets.NEXT_PUBLIC_CP_ACCESS_KEY }}
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
