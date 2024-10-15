@@ -6,7 +6,7 @@ import { useSample } from '@/_api/MbrApi'
 import ResErrorMessage from '@/_common/_data/ResErrorMessage'
 
 const Sider = ({ onClose }: { onClose: () => void }) => {
-  const { data: sampleData, error: sampelError } = useSample(1000)
+  const { data: sampleData, error: sampelError } = useSample(1001)
 
   useEffect(() => {
     console.log('d  ef : ', process.env.NEXT_PUBLIC_CP_BASE_URL)
