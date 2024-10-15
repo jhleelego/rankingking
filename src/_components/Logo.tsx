@@ -1,6 +1,7 @@
 import Link from 'next/link'
 
 const Logo = () => {
+  return <></>
   return (
     <>
       {/* <Link href="http://127.0.0.1:3000">
