@@ -11,8 +11,6 @@ const Sider = ({ onClose }: { onClose: () => void }) => {
   useEffect(() => {
     console.log('abc : ', process.env.NEXT_PUBLIC_CP_ACCESS_KEY)
     console.log('def : ', process.env.NEXT_PUBLIC_CP_BASE_URL)
-    console.log('ABCD : ', process.env.ABCD)
-    console.log('DCEF : ', process.env.DCEF)
     console.log('NEXT_PUBLIC_ABCD : ', process.env.NEXT_PUBLIC_ABCD)
     console.log('sampleData : ', sampleData)
   }, [sampleData])
@@ -28,9 +26,6 @@ const Sider = ({ onClose }: { onClose: () => void }) => {
   return (
     <div>
       <div className={`flex items-center justify-between px-4 h-[48px] `}>
-        process.env.ABCD : {process.env.ABCD}
-        <br />
-        process.env.NEXT_PUBLIC_ABCD : {process.env.NEXT_PUBLIC_ABCD}
         <Logo />
         <button onClick={onClose} className="text-gray-500">
           ✕

@@ -105,17 +105,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-      - name: Generate Environment Variables File for Production in Deploy
-        run: |
-          echo "NEXT_PUBLIC_CP_BASE_URL=$NEXT_PUBLIC_CP_BASE_URL" >> .env
-          echo "NEXT_PUBLIC_CP_SECRET_KEY=$NEXT_PUBLIC_CP_SECRET_KEY" >> .env
-          echo "NEXT_PUBLIC_CP_ACCESS_KEY=$NEXT_PUBLIC_CP_ACCESS_KEY" >> .env
-          echo "ABCD=$ABCD" >> .env
-          echo "NEXT_PUBLIC_ABCD=$NEXT_PUBLIC_ABCD" >> .env
-          echo "DCEF=DCEF" >> .env
-        env:
-          NEXT_PUBLIC_CP_BASE_URL: ${{ secrets.NEXT_PUBLIC_CP_BASE_URL }}
-          NEXT_PUBLIC_CP_SECRET_KEY: ${{ secrets.NEXT_PUBLIC_CP_SECRET_KEY }}
-          NEXT_PUBLIC_CP_ACCESS_KEY: ${{ secrets.NEXT_PUBLIC_CP_ACCESS_KEY }}
-          ABCD: 'ABCD'
-          NEXT_PUBLIC_ABCD: 'NEXT_PUBLIC_ABCD'
