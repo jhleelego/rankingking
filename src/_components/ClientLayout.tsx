@@ -42,13 +42,13 @@ const ClientLayout = ({ children }: { children: React.ReactNode }) => {
   const REQUEST_METHOD = 'POST'
 
   useEffect(() => {
-    console.log('REQUEST_METHOD : ', REQUEST_METHOD)
-    console.log('REQ_INFO.URL : ', REQ_INFO.URL)
-    console.log('REQ_INFO.SECRET_KEY : ', REQ_INFO.SECRET_KEY)
-    console.log('REQ_INFO.ACCESS_KEY : ', REQ_INFO.ACCESS_KEY)
-    console.log('REQ_INFO.DOMAIN : ', REQ_INFO.DOMAIN)
+    // console.log('REQUEST_METHOD : ', REQUEST_METHOD)
+    // console.log('REQ_INFO.URL : ', REQ_INFO.URL)
+    // console.log('REQ_INFO.SECRET_KEY : ', REQ_INFO.SECRET_KEY)
+    // console.log('REQ_INFO.ACCESS_KEY : ', REQ_INFO.ACCESS_KEY)
+    // console.log('REQ_INFO.DOMAIN : ', REQ_INFO.DOMAIN)
     const authorization = generateHmac(REQUEST_METHOD, REQ_INFO.URL, REQ_INFO.SECRET_KEY, REQ_INFO.ACCESS_KEY)
-    console.log('authorization.DOMAIN : ', authorization)
+    // console.log('authorization.DOMAIN : ', authorization)
     axios.defaults.baseURL = process.env.NEXT_PUBLIC_CP_DOMAIN
     axios
       .request({
