@@ -51,11 +51,13 @@ export class FetchInterceptors {
     let jsonResponse
     let response
     try {
-      var targetUrl = `${this.defaultUrl}${url}`
-      if (targetUrl.indexOf('?')) {
-        targetUrl = targetUrl += '&subId=rankingking'
+      let finalUrl
+      if (url.indexOf('?')) {
+        finalUrl = url += '&subId=rankingking'
       } else {
+        finalUrl = url += '?subId=rankingking'
       }
+      var targetUrl = `${this.defaultUrl}${finalUrl}`
       // const finalConfig = await this.requestInterceptors.reduce(async (acc, reqInterceptor) => reqInterceptor(await acc), Promise.resolve(config ?? {}))
       // console.log(`@req : ${decodeURIComponent(targetUrl)}\n@config : `, finalConfig)
       let finalConfig = {
