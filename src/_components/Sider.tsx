@@ -11,6 +11,9 @@ const Sider = ({ onClose }: { onClose: () => void }) => {
   useEffect(() => {
     console.log('abc : ', process.env.NEXT_PUBLIC_CP_ACCESS_KEY)
     console.log('def : ', process.env.NEXT_PUBLIC_CP_BASE_URL)
+    console.log('ABCD : ', process.env.ABCD)
+    console.log('DCEF : ', process.env.DCEF)
+    console.log('NEXT_PUBLIC_ABCD : ', process.env.NEXT_PUBLIC_ABCD)
     console.log('sampleData : ', sampleData)
   }, [sampleData])
 
