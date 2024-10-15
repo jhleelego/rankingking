@@ -10,7 +10,7 @@ const Sider = ({ onClose }: { onClose: () => void }) => {
 
   useEffect(() => {
     console.log('abc : ', process.env.PUBLIC_CP_BASE_URL)
-    console.log('def : ', process.env.NEXT_PUBLIC_CP_BASE_URL)
+    console.log('def : ', process.env.CP_BASE_URL)
     console.log('sampleData : ', sampleData)
   }, [sampleData])
 
