@@ -51,13 +51,7 @@ export class FetchInterceptors {
     let jsonResponse
     let response
     try {
-      let finalUrl
-      if (url.indexOf('?')) {
-        finalUrl = url += '&subId=rankingking'
-      } else {
-        finalUrl = url += '?subId=rankingking'
-      }
-      var targetUrl = `${this.defaultUrl}${finalUrl}`
+      var targetUrl = `${this.defaultUrl}${url}`
       // const finalConfig = await this.requestInterceptors.reduce(async (acc, reqInterceptor) => reqInterceptor(await acc), Promise.resolve(config ?? {}))
       // console.log(`@req : ${decodeURIComponent(targetUrl)}\n@config : `, finalConfig)
       let finalConfig = {
@@ -72,8 +66,9 @@ export class FetchInterceptors {
       console.log('finalConfig : ', finalConfig)
       response = await fetch(targetUrl, finalConfig)
       // console.log('response.status : ', response.status)
-      // alert(`'response : ${JSON.stringify(response)}`)
+      console.log(`'response : ${JSON.stringify(response)}`)
     } catch (error) {
+      console.log(`'error : ${error}`)
       // const errorResponse = { message: error } as ResErrorMessage
       // await this.errorInterceptors.reduce(async (acc, errorInterceptor) => errorInterceptor(errorResponse), Promise.resolve(errorResponse))
       throw error
