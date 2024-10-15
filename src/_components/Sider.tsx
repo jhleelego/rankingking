@@ -9,7 +9,7 @@ const Sider = ({ onClose }: { onClose: () => void }) => {
   const { data: sampleData, error: sampelError } = useSample(1000)
 
   useEffect(() => {
-    console.log('def : ', process.env.NEXT_PUBLIC_CP_BASE_URL)
+    console.log('d ef : ', process.env.NEXT_PUBLIC_CP_BASE_URL)
     console.log('sampleData : ', sampleData)
   }, [sampleData])
 
