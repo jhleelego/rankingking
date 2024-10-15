@@ -17,6 +17,7 @@ const Sider = ({ onClose }: { onClose: () => void }) => {
 
   // Replace with your own ACCESS_KEY and SECRET_KEY
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const REQUEST = { coupangUrls: ['https://www.coupang.com/np/search?component=&q=good&channel=user', 'https://www.coupang.com/np/coupangglobal'] }
 
   useEffect(() => {
@@ -36,7 +37,7 @@ const Sider = ({ onClose }: { onClose: () => void }) => {
         console.error(err?.response?.data)
       }
     })()
-  }, [])
+  }, [REQUEST])
 
   return (
     <div>
