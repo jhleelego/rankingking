@@ -101,10 +101,6 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
       - name: Generate Environment Variables File for Production in Deploy
-        run: |
-          echo "NEXT_PUBLIC_CP_BASE_URL=$NEXT_PUBLIC_CP_BASE_URL" >> .env.production
-          echo "NEXT_PUBLIC_CP_SECRET_KEY=$NEXT_PUBLIC_CP_SECRET_KEY" >> .env.production
-          echo "NEXT_PUBLIC_CP_ACCESS_KEY=$NEXT_PUBLIC_CP_ACCESS_KEY" >> .env.production
         env:
           NEXT_PUBLIC_CP_BASE_URL: ${{ secrets.NEXT_PUBLIC_CP_BASE_URL }}
           NEXT_PUBLIC_CP_SECRET_KEY: ${{ secrets.NEXT_PUBLIC_CP_SECRET_KEY }}
