@@ -1,3 +1,4 @@
+import { generateHmac } from '@/util/hmacGenerator'
 import ResErrorMessage from '../_data/ResErrorMessage'
 
 export class FetchInterceptors {
@@ -53,7 +54,15 @@ export class FetchInterceptors {
       const targetUrl = `${this.defaultUrl}${url}`
       // const finalConfig = await this.requestInterceptors.reduce(async (acc, reqInterceptor) => reqInterceptor(await acc), Promise.resolve(config ?? {}))
       // console.log(`@req : ${decodeURIComponent(targetUrl)}\n@config : `, finalConfig)
-      response = await fetch(targetUrl, config)
+      let finalConfig = {
+        ...config,
+        headers: {
+          ...config?.headers,
+          Authorization: generateHmac(config?.method!, url, process.env.NEXT_PUBLIC_CP_SECRET_KEY!, process.env.NEXT_PUBLIC_CP_ACCESS_KEY!),
+        },
+      }
+      console.log('finalConfig : ', finalConfig)
+      response = await fetch(targetUrl, finalConfig)
       // console.log('response.status : ', response.status)
       // alert(`'response : ${JSON.stringify(response)}`)
     } catch (error) {
