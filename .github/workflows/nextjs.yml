@@ -17,7 +17,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: 'v18.14.0'
+          node-version: 'v20.16.0'
           cache: 'yarn'
 
       - name: Build
