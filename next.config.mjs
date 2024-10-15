@@ -12,6 +12,10 @@ const nextConfig = {
       },
     ]
   },
+  serverActions: {
+    allowedForwardedHosts: [process.env.NEXT_PUBLIC_CP_DOMAIN || ''],
+    allowedOrigins: [process.env.NEXT_PUBLIC_CP_DOMAIN || ''],
+  },
 }
 
 export default nextConfig

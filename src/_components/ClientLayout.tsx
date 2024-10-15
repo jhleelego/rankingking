@@ -59,8 +59,7 @@ const ClientLayout = ({ children }: { children: React.ReactNode }) => {
         url: REQ_INFO.URL,
         headers: {
           Authorization: authorization,
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json;charset=UTF-8',
         },
         data: REQUEST,
       })
