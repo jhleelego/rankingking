@@ -2,7 +2,7 @@ import { generateHmac } from '@/util/hmacGenerator'
 import ResErrorMessage from '../_data/ResErrorMessage'
 
 export class FetchInterceptors {
-  private static defaultUrl = process.env.NEXT_PUBLIC_CP_BASE_URL
+  private static defaultUrl = process.env.NEXT_PUBLIC_CP_DOMAIN
   public static defaultCredentials: RequestInit = {
     credentials: 'include',
     // ...(process.env.NODE_ENV == 'development' ? { credentials: 'include' } : {})
@@ -58,10 +58,11 @@ export class FetchInterceptors {
         ...config,
         headers: {
           ...config?.headers,
-          Authorization: generateHmac(config?.method!, targetUrl, process.env.NEXT_PUBLIC_CP_SECRET_KEY!, process.env.NEXT_PUBLIC_CP_ACCESS_KEY!),
+          Authorization: generateHmac(config?.method!, url, process.env.NEXT_PUBLIC_CP_SECRET_KEY!, process.env.NEXT_PUBLIC_CP_ACCESS_KEY!),
         },
       }
-      console.log('url : ', targetUrl)
+      console.log('DOMAIN : ', this.defaultUrl)
+      console.log('url : ', url)
       console.log('finalConfig : ', finalConfig)
       response = await fetch(targetUrl, finalConfig)
       // console.log('response.status : ', response.status)
