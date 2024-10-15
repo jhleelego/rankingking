@@ -34,7 +34,7 @@ const Sider = ({ onClose }: { onClose: () => void }) => {
         })
         console.log(response.data)
       } catch (err) {
-        console.error(err?.response?.data)
+        console.error(err)
       }
     })()
   }, [REQUEST])
