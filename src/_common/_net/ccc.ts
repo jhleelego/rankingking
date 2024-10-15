@@ -5,7 +5,7 @@ import ResErrorMessage from '../_data/ResErrorMessage'
 export class FetchInterceptors {
   public static count = 0
   private static observers = new Subject<number>()
-  private static defaultUrl = process.env.NEXT_PUBLIC_CP_BASE_URL
+  private static defaultUrl = process.env.NEXT_PUBLIC_CP_DOMAIN
   public static defaultCredentials: RequestInit = {
     credentials: 'include',
     // ...(process.env.NODE_ENV == 'development' ? { credentials: 'include' } : {})
