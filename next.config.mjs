@@ -4,6 +4,14 @@ const prefix = process.env.NODE_ENV === 'production' ? 'https://rankingking.co.k
 const nextConfig = {
   reactStrictMode: true,
   assetPrefix: prefix,
+  async rewrites() {
+    return [
+      {
+        source: '/:path*',
+        destination: `${process.env.NEXT_PUBLIC_CP_BASE_URL}:path*`,
+      },
+    ]
+  },
 }
 
 export default nextConfig
