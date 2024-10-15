@@ -28,6 +28,9 @@ const Sider = ({ onClose }: { onClose: () => void }) => {
   return (
     <div>
       <div className={`flex items-center justify-between px-4 h-[48px] `}>
+        process.env.ABCD : {process.env.ABCD}
+        <br />
+        process.env.NEXT_PUBLIC_ABCD : {process.env.NEXT_PUBLIC_ABCD}
         <Logo />
         <button onClick={onClose} className="text-gray-500">
           ✕
