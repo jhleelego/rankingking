@@ -58,10 +58,10 @@ export class FetchInterceptors {
         ...config,
         headers: {
           ...config?.headers,
-          Authorization: generateHmac(config?.method!, url, process.env.NEXT_PUBLIC_CP_SECRET_KEY!, process.env.NEXT_PUBLIC_CP_ACCESS_KEY!),
+          Authorization: generateHmac(config?.method!, targetUrl, process.env.NEXT_PUBLIC_CP_SECRET_KEY!, process.env.NEXT_PUBLIC_CP_ACCESS_KEY!),
         },
       }
-      console.log('url : ', url)
+      console.log('url : ', targetUrl)
       console.log('finalConfig : ', finalConfig)
       response = await fetch(targetUrl, finalConfig)
       // console.log('response.status : ', response.status)
