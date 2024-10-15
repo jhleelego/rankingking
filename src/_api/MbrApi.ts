@@ -7,5 +7,5 @@ import { useQuery } from '@tanstack/react-query'
 export const useSample = (categoryId: number) =>
   useQuery({
     queryKey: ['todos'],
-    queryFn: () => getFetchData<any, {}>(`/v2/providers/affiliate_open_api/apis/openapi/v1/products/bestcategories/${categoryId}?limit=100`),
+    queryFn: () => getFetchData<any, {}>(`/v2/providers/affiliate_open_api/apis/openapi/products/bestcategories/${categoryId}?limit=100`),
   })
