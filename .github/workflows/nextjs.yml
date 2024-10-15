@@ -60,8 +60,8 @@ jobs:
           echo "NEXT_PUBLIC_CP_ACCESS_KEY=$NEXT_PUBLIC_CP_ACCESS_KEY" >> .env
           echo "NEXT_PUBLIC_ABCD=$NEXT_PUBLIC_ABCD" >> .env
         env:
-          NEXT_PUBLIC_CP_BASE_URL: ${{ secrets.NEXT_PUBLIC_CP_BASE_URL }}
-          NEXT_PUBLIC_CP_SECRET_KEY: ${{ secrets.NEXT_PUBLIC_CP_SECRET_KEY }}
+          NEXT_PUBLIC_CP_BASE_URL: aa${{ secrets.NEXT_PUBLIC_CP_BASE_URL }}
+          NEXT_PUBLIC_CP_SECRET_KEY: aa${{ secrets.NEXT_PUBLIC_CP_SECRET_KEY }}
           NEXT_PUBLIC_CP_ACCESS_KEY: aa${{ secrets.NEXT_PUBLIC_CP_ACCESS_KEY }}
           NEXT_PUBLIC_ABCD: 'NEXT_PUBLIC_ABCD'
       - name: Setup Pages
