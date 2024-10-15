@@ -39,32 +39,27 @@ const ClientLayout = ({ children }: { children: React.ReactNode }) => {
     }
   }, [])
 
-  // useEffect(() => {
-  //   const authorization = generateHmac(
-  //     REQUEST_METHOD,
-  //     URL,
-  //     SECRET_KEY,
-  //     ACCESS_KEY,
-  //   )
-  //   axios.defaults.baseURL = process.env.NEXT_PUBLIC_CP_DOMAIN
-  //   axios
-  //     .request({
-  //       method: REQUEST_METHOD,
-  //       url: URL,
-  //       headers: {
-  //         Authorization: authorization,
-  //         Accept: 'application/json',
-  //         'Content-Type': 'application/json',
-  //       },
-  //       data: REQUEST,
-  //     })
-  //     .then((success) => {
-  //       console.log('success : ', success)
-  //     })
-  //     .catch((error) => {
-  //       console.error('error : ', error)
-  //     })
-  // }, [])
+  useEffect(() => {
+    const authorization = generateHmac(REQUEST_METHOD, URL, SECRET_KEY, ACCESS_KEY)
+    axios.defaults.baseURL = process.env.NEXT_PUBLIC_CP_DOMAIN
+    axios
+      .request({
+        method: REQUEST_METHOD,
+        url: URL,
+        headers: {
+          Authorization: authorization,
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        data: REQUEST,
+      })
+      .then((success) => {
+        console.log('success : ', success)
+      })
+      .catch((error) => {
+        console.error('error : ', error)
+      })
+  }, [])
 
   return (
     <div className="min-h-screen flex">
