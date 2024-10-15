@@ -1,25 +1,42 @@
 'use client'
 
-import { useEffect } from 'react'
+import axios from 'axios'
 import Logo from './Logo'
-import { useSample } from '@/_api/MbrApi'
-import ResErrorMessage from '@/_common/_data/ResErrorMessage'
+import { generateHmac } from '@/util/hmacGenerator'
+import { useEffect } from 'react'
+
+const REQ_INFO = {
+  DOMAIN: process.env.NEXT_PUBLIC_CP_DOMAIN,
+  URL: '/v2/providers/affiliate_open_api/apis/openapi/v1/deeplink',
+  ACCESS_KEY: process.env.NEXT_PUBLIC_CP_ACCESS_KEY!,
+  SECRET_KEY: process.env.NEXT_PUBLIC_CP_SECRET_KEY!,
+}
 
 const Sider = ({ onClose }: { onClose: () => void }) => {
-  const { data: sampleData, error: sampelError } = useSample(1001)
+  const REQUEST_METHOD = 'POST'
+
+  // Replace with your own ACCESS_KEY and SECRET_KEY
+
+  const REQUEST = { coupangUrls: ['https://www.coupang.com/np/search?component=&q=good&channel=user', 'https://www.coupang.com/np/coupangglobal'] }
 
   useEffect(() => {
-    console.log('def : ', process.env.NEXT_PUBLIC_CP_DOMAIN)
-    console.log('sampleData : ', sampleData)
-  }, [sampleData])
+    ;(async () => {
+      const authorization = generateHmac(REQUEST_METHOD, REQ_INFO.URL, REQ_INFO.SECRET_KEY, REQ_INFO.ACCESS_KEY)
+      axios.defaults.baseURL = REQ_INFO.DOMAIN
 
-  useEffect(() => {
-    if (sampelError) {
-      console.log('sampelErrosr : ', sampelError)
-      const error = sampelError as unknown as ResErrorMessage
-      console.log('sampelError : ', error)
-    }
-  }, [sampelError])
+      try {
+        const response = await axios.request({
+          method: REQUEST_METHOD,
+          url: REQ_INFO.URL,
+          headers: { Authorization: authorization },
+          data: REQUEST,
+        })
+        console.log(response.data)
+      } catch (err) {
+        console.error(err?.response?.data)
+      }
+    })()
+  }, [])
 
   return (
     <div>
