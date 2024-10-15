@@ -55,11 +55,11 @@ jobs:
           cache: ${{ steps.detect-package-manager.outputs.manager }}
       - name: Generate Environment Variables File for Production in Build
         run: |
-          echo "NEXT_PUBLIC_CP_BASE_URL=$NEXT_PUBLIC_CP_BASE_URL" >> .env
+          echo "NEXT_PUBLIC_CP_DOMAIN=$NEXT_PUBLIC_CP_DOMAIN" >> .env
           echo "NEXT_PUBLIC_CP_SECRET_KEY=$NEXT_PUBLIC_CP_SECRET_KEY" >> .env
           echo "NEXT_PUBLIC_CP_ACCESS_KEY=$NEXT_PUBLIC_CP_ACCESS_KEY" >> .env
         env:
-          NEXT_PUBLIC_CP_BASE_URL: ${{ secrets.NEXT_PUBLIC_CP_BASE_URL }}
+          NEXT_PUBLIC_CP_DOMAIN: ${{ secrets.NEXT_PUBLIC_CP_DOMAIN }}
           NEXT_PUBLIC_CP_SECRET_KEY: ${{ secrets.NEXT_PUBLIC_CP_SECRET_KEY }}
           NEXT_PUBLIC_CP_ACCESS_KEY: ${{ secrets.NEXT_PUBLIC_CP_ACCESS_KEY }}
       - name: Setup Pages
